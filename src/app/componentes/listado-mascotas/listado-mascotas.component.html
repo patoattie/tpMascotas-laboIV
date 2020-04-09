@@ -1,0 +1,22 @@
+<table>
+    <tr>
+        <th>Mascota</th>
+        <th>Acción</th>
+    </tr>
+    <tr *ngFor="let mascota of listaMascotas">
+        <td class="{{ mascota.tipo }}">{{ mascota.nombre }}</td>
+        <td>
+            <input (click)="mostrarDetalleMascota(mascota)" type="button" value="Ver Detalle">
+        </td>
+    </tr>
+</table>
+
+<p>
+    (*) Referencia de colores: [
+    <span class="perro">Perro</span>
+    |
+    <span class="gato">Gato</span>
+    |
+    <span class="pez">Pez</span>
+    ]
+</p>

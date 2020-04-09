@@ -1,0 +1,14 @@
+<form #mascotaForm="ngForm" (ngSubmit)="agregarMascota()">
+  <label for="nombreMascota">Nombre</label>
+  <input [(ngModel)]="mascota.nombre" type="text" id="nombreMascota" name="nombreMascota" placeholder="Nombre de la mascota" required>
+
+  <label for="tipoMascota">Tipo</label>
+  <select [(ngModel)]="mascota.tipo" id="tipoMascota" name="tipoMascota" required>
+    <option *ngFor="let tipo of tiposMascota" value="{{ tipo }}">{{ tipo.toUpperCase() }}</option>
+  </select>
+
+  <label for="imagenMascota">Imagen</label>
+  <input [(ngModel)]="mascota.imagen" type="url" id="imagenMascota" name="imagenMascota" placeholder="URL de la imagen" required pattern="^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$">
+
+  <input [disabled]="!mascotaForm.form.valid" type="submit" value="Agregar a la Lista">
+</form>
