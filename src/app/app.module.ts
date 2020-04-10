@@ -7,13 +7,17 @@ import { AppComponent } from './app.component';
 import { ListadoMascotasComponent } from './componentes/listado-mascotas/listado-mascotas.component';
 import { MascotaComponent } from './componentes/mascota/mascota.component';
 import { CargaMascotaComponent } from './componentes/carga-mascota/carga-mascota.component';
+import { MenuComponent } from './componentes/menu/menu.component';
+import { HomeComponent } from './componentes/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListadoMascotasComponent,
     MascotaComponent,
-    CargaMascotaComponent
+    CargaMascotaComponent,
+    MenuComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
