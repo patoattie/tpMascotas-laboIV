@@ -10,7 +10,7 @@ export class MascotasService {
   constructor() { }
 
   agregarMascota(listaMascotas: Mascota[], mascota: Mascota): void {
-    const nuevaMascota: Mascota = new Mascota(mascota.nombre, mascota.imagen, mascota.tipo);
+    const nuevaMascota: Mascota = new Mascota(mascota.nombre, mascota.imagen, mascota.tipo, listaMascotas.length + 1);
     listaMascotas.push(nuevaMascota);
     localStorage.setItem('mascotas', JSON.stringify(listaMascotas));
   }
@@ -25,6 +25,19 @@ export class MascotasService {
 
     if (listaMascotas.length === 0) { // Si no hay datos inicializo con 3 mascotas de prueba.
       this.inicializarListaMascotas(listaMascotas);
+    } else {
+      let corrigeId = false;
+
+      listaMascotas.forEach((unaMascota, indice) => {
+        if (unaMascota.id === undefined) {
+          unaMascota.id = indice + 1;
+          corrigeId = true;
+        }
+      });
+
+      if (corrigeId) {
+        localStorage.setItem('mascotas', JSON.stringify(listaMascotas));
+      }
     }
 
     return listaMascotas;
@@ -32,9 +45,9 @@ export class MascotasService {
 
 
   private inicializarListaMascotas(listaMascotas: Mascota[]): void {
-    this.agregarMascota(listaMascotas, new Mascota('Luna', '../assets/perro.jpg', TipoMascota.PERRO));
-    this.agregarMascota(listaMascotas, new Mascota('Nachi', '../assets/gato.jpg', TipoMascota.GATO));
-    this.agregarMascota(listaMascotas, new Mascota('Nemo', '../assets/pez.jpg', TipoMascota.PEZ));
+    this.agregarMascota(listaMascotas, new Mascota('Luna', '../assets/perro.jpg', TipoMascota.PERRO, 1));
+    this.agregarMascota(listaMascotas, new Mascota('Nachi', '../assets/gato.jpg', TipoMascota.GATO, 2));
+    this.agregarMascota(listaMascotas, new Mascota('Nemo', '../assets/pez.jpg', TipoMascota.PEZ, 3));
   }
 
 }

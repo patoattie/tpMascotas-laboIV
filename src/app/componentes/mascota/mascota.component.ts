@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Mascota } from '../../clases/mascota';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mascota',
@@ -10,9 +11,10 @@ export class MascotaComponent implements OnInit {
   @Input() mascota: Mascota;
   @Output() ocultarMascotaEvent = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(private ruta: Router) { }
 
   ngOnInit(): void {
+    console.log(this.ruta);
   }
 
   ocultarDetalleMascota(): void {

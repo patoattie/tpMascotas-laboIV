@@ -9,6 +9,7 @@ import { MascotaComponent } from './componentes/mascota/mascota.component';
 import { CargaMascotaComponent } from './componentes/carga-mascota/carga-mascota.component';
 import { MenuComponent } from './componentes/menu/menu.component';
 import { HomeComponent } from './componentes/home/home.component';
+import { ErrorComponent } from './componentes/error/error.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HomeComponent } from './componentes/home/home.component';
     MascotaComponent,
     CargaMascotaComponent,
     MenuComponent,
-    HomeComponent
+    HomeComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
