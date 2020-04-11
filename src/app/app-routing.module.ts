@@ -18,11 +18,13 @@ const routes: Routes = [
   },
   {
     path: 'listado',
-    component: ListadoMascotasComponent
-  },
-  {
-    path: 'detalle/:id',
-    component: MascotaComponent
+    component: ListadoMascotasComponent,
+    children: [
+      {
+        path: 'detalle/:id',
+        component: MascotaComponent
+      }
+    ]
   },
   {
     path: '',

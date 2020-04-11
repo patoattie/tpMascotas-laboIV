@@ -6,29 +6,31 @@ import { TipoMascota } from '../enums/tipo-mascota.enum';
   providedIn: 'root'
 })
 export class MascotasService {
+  listaMascotas: Mascota[];
 
-  constructor() { }
-
-  agregarMascota(listaMascotas: Mascota[], mascota: Mascota): void {
-    const nuevaMascota: Mascota = new Mascota(mascota.nombre, mascota.imagen, mascota.tipo, listaMascotas.length + 1);
-    listaMascotas.push(nuevaMascota);
-    localStorage.setItem('mascotas', JSON.stringify(listaMascotas));
+  constructor() {
+    this.setListaMascotas();
   }
 
-  getListaMascotas(): Mascota[] {
-    let listaMascotas: Mascota[] = [];
+  agregarMascota(mascota: Mascota): void {
+    const nuevaMascota: Mascota = new Mascota(mascota.nombre, mascota.imagen, mascota.tipo, this.listaMascotas.length + 1);
+    this.listaMascotas.push(nuevaMascota);
+    localStorage.setItem('mascotas', JSON.stringify(this.listaMascotas));
+  }
+
+  private setListaMascotas(): void {
     const storage: Mascota[] = JSON.parse(localStorage.getItem('mascotas'));
 
     if (storage != null) {
-      listaMascotas = storage;
+      this.listaMascotas = storage;
     }
 
-    if (listaMascotas.length === 0) { // Si no hay datos inicializo con 3 mascotas de prueba.
-      this.inicializarListaMascotas(listaMascotas);
+    if (this.listaMascotas.length === 0) { // Si no hay datos inicializo con 3 mascotas de prueba.
+      this.inicializarListaMascotas();
     } else {
       let corrigeId = false;
 
-      listaMascotas.forEach((unaMascota, indice) => {
+      this.listaMascotas.forEach((unaMascota, indice) => {
         if (unaMascota.id === undefined) {
           unaMascota.id = indice + 1;
           corrigeId = true;
@@ -36,18 +38,23 @@ export class MascotasService {
       });
 
       if (corrigeId) {
-        localStorage.setItem('mascotas', JSON.stringify(listaMascotas));
+        localStorage.setItem('mascotas', JSON.stringify(this.listaMascotas));
       }
     }
-
-    return listaMascotas;
   }
 
+  getListaMascotas(): Mascota[] {
+    return this.listaMascotas;
+  }
 
-  private inicializarListaMascotas(listaMascotas: Mascota[]): void {
-    this.agregarMascota(listaMascotas, new Mascota('Luna', '../assets/perro.jpg', TipoMascota.PERRO, 1));
-    this.agregarMascota(listaMascotas, new Mascota('Nachi', '../assets/gato.jpg', TipoMascota.GATO, 2));
-    this.agregarMascota(listaMascotas, new Mascota('Nemo', '../assets/pez.jpg', TipoMascota.PEZ, 3));
+  getMascota(id: string): Mascota {
+    return this.listaMascotas.filter(unaMascota => unaMascota.id.toString() === id)[0];
+  }
+
+  private inicializarListaMascotas(): void {
+    this.agregarMascota(new Mascota('Luna', '../assets/perro.jpg', TipoMascota.PERRO, 1));
+    this.agregarMascota(new Mascota('Nachi', '../assets/gato.jpg', TipoMascota.GATO, 2));
+    this.agregarMascota(new Mascota('Nemo', '../assets/pez.jpg', TipoMascota.PEZ, 3));
   }
 
 }

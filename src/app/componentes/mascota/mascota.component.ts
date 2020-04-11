@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Mascota } from '../../clases/mascota';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { MascotasService } from 'src/app/servicios/mascotas.service';
 
 @Component({
   selector: 'app-mascota',
@@ -8,13 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./mascota.component.css']
 })
 export class MascotaComponent implements OnInit {
-  @Input() mascota: Mascota;
+  mascota: Mascota;
   @Output() ocultarMascotaEvent = new EventEmitter<void>();
 
-  constructor(private ruta: Router) { }
+  constructor(
+    private ruta: ActivatedRoute,
+    private mascotas: MascotasService
+  ) { }
 
   ngOnInit(): void {
-    console.log(this.ruta);
+    // console.log(this.ruta.routerState);
+    const idMascota = this.ruta.snapshot.paramMap.get('id');
+    this.mascota = this.mascotas.getMascota(idMascota);
   }
 
   ocultarDetalleMascota(): void {

@@ -23,8 +23,8 @@ import { ErrorComponent } from './componentes/error/error.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

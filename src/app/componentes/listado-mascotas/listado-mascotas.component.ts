@@ -20,7 +20,7 @@ export class ListadoMascotasComponent implements OnInit {
 
   mostrarDetalleMascota(mascota: Mascota): void {
     // this.mostrarMascotaEvent.emit(mascota);
-    this.ruta.navigate(['/detalle/' + mascota.id]);
+    this.ruta.navigate(['/listado/detalle', mascota.id]);
   }
 
 }

@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
   }
 
   agregarMascota(mascota: Mascota): void {
-    this.mascotas.agregarMascota(this.listaMascotas, mascota);
+    this.mascotas.agregarMascota(mascota);
   }
 
 }
