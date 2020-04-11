@@ -1,26 +1,36 @@
-<div *ngIf="mostrarDetalle">
+<div class="detalle" *ngIf="mostrarDetalle">
     <router-outlet></router-outlet>
 </div>
 
-<table>
-    <tr>
-        <th>Mascota</th>
-        <th>Acción</th>
-    </tr>
-    <tr *ngFor="let mascota of listaMascotas">
-        <td class="{{ mascota.tipo }}">{{ mascota.nombre }}</td>
-        <td>
-            <input (click)="mostrarDetalleMascota(mascota)" type="button" value="Ver Detalle">
-        </td>
-    </tr>
-</table>
+<div *ngIf="listaMascotas.length > 0">
+    <table>
+        <tr>
+            <th>Mascota</th>
+            <th>Acción</th>
+        </tr>
+        <tr *ngFor="let mascota of listaMascotas">
+            <td class="{{ mascota.tipo }}">{{ mascota.nombre }}</td>
+            <td>
+                <input (click)="mostrarDetalleMascota(mascota)" type="button" value="Ver Detalle">
+            </td>
+        </tr>
+    </table>
+    
+    <p>
+        (*) Referencia de colores: [
+        <span class="perro">Perro</span>
+        |
+        <span class="gato">Gato</span>
+        |
+        <span class="pez">Pez</span>
+        ]
+    </p>
+</div>
 
-<p>
-    (*) Referencia de colores: [
-    <span class="perro">Perro</span>
-    |
-    <span class="gato">Gato</span>
-    |
-    <span class="pez">Pez</span>
-    ]
-</p>
+<div class="container" *ngIf="listaMascotas.length === 0">
+    <img src="../../../assets/vacio.jpg" alt="Vacío" style="width:100%;">
+    <div class="contenido">
+        <h2>No hay mascotas cargadas</h2>
+        <h3><a class="btn info" routerLink="/carga">Agregá una mascota</a></h3>
+    </div>
+</div>

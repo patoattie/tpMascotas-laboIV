@@ -34,3 +34,26 @@ input[type=submit]:disabled{
   background-color: darkolivegreen;
   cursor: not-allowed;
 }
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 2%;
+}
+
+thead {
+  font-size: medium;
+  font-weight: bold;
+}
+
+td, th {
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px;
+}
+
+img {
+  width: 50%;
+  padding: 10px;
+}

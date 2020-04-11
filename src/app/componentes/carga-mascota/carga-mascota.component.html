@@ -12,3 +12,21 @@
 
   <input [disabled]="!mascotaForm.form.valid" type="submit" value="Agregar a la Lista">
 </form>
+
+<div *ngIf="mascotaForm.submitted">
+  <table>
+    <thead>Ultima mascota agregada</thead>
+    <tr>
+      <td>Nombre</td>
+      <td>{{ ultimaMascota.nombre }}</td>
+    </tr>
+    <tr>
+      <td>Tipo</td>
+      <td>{{ ultimaMascota.tipo }}</td>
+    </tr>
+    <tr>
+      <td>Imagen</td>
+      <td><img src="{{ ultimaMascota.imagen }}" alt="{{ ultimaMascota.nombre }}"></td>
+    </tr>
+  </table>
+</div>

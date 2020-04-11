@@ -26,8 +26,38 @@ tr:nth-child(even) {
     color: blue;
 }
 
-div {
+.detalle {
   border-bottom-width: thin;
   border-bottom-style: solid;
   padding: 2%;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.contenido {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn {
+  border: none; /* Remove borders */
+  color: white; /* Add a text color */
+  padding: 14px 28px; /* Add some padding */
+  cursor: pointer; /* Add a pointer cursor on mouse-over */
+  border-radius: 12px;
+  text-decoration: none;
+}
+
+.info {
+  background-color: #2196F3;
+}
+
+.info:hover {
+  background: #0b7dda;
 }

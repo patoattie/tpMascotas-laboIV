@@ -1,6 +1,7 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { TipoMascota } from '../../enums/tipo-mascota.enum';
 import { Mascota } from 'src/app/clases/mascota';
+import { MascotasService } from 'src/app/servicios/mascotas.service';
 
 @Component({
   selector: 'app-carga-mascota',
@@ -9,19 +10,23 @@ import { Mascota } from 'src/app/clases/mascota';
 })
 export class CargaMascotaComponent implements OnInit {
   tiposMascota: string[];
-  @Output() agregarMascotaEvent = new EventEmitter<Mascota>();
   mascota: Mascota;
+  ultimaMascota: Mascota;
 
-  constructor() {
+  constructor(private mascotas: MascotasService) {
     this.tiposMascota = Object.values(TipoMascota);
     this.mascota = new Mascota();
+    this.ultimaMascota = new Mascota();
   }
 
   ngOnInit(): void {
   }
 
   agregarMascota(): void {
-    this.agregarMascotaEvent.emit(this.mascota);
+    this.mascotas.agregarMascota(this.mascota);
+
+    this.ultimaMascota = {...this.mascota}; // Clono el objeto mascota en el objeto ultimaMascota.
+
     this.mascota.nombre = '';
     this.mascota.imagen = '';
     this.mascota.tipo = undefined;
