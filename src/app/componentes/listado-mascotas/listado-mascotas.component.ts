@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Mascota } from 'src/app/clases/mascota';
 import { MascotasService } from 'src/app/servicios/mascotas.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-listado-mascotas',
@@ -10,17 +10,22 @@ import { Router } from '@angular/router';
 })
 export class ListadoMascotasComponent implements OnInit {
   listaMascotas: Mascota[];
-  @Output() mostrarMascotaEvent = new EventEmitter<Mascota>();
+  mostrarDetalle: boolean;
 
-  constructor(private mascotas: MascotasService, private ruta: Router) { }
-
-  ngOnInit(): void {
+  constructor(
+    private mascotas: MascotasService,
+    private ruta: Router,
+    private rutaActiva: ActivatedRoute
+  ) {
     this.listaMascotas = this.mascotas.getListaMascotas();
   }
 
-  mostrarDetalleMascota(mascota: Mascota): void {
-    // this.mostrarMascotaEvent.emit(mascota);
-    this.ruta.navigate(['/listado/detalle', mascota.id]);
+  ngOnInit(): void {
+    this.mostrarDetalle = false;
   }
 
+  mostrarDetalleMascota(mascota: Mascota): void {
+    this.mostrarDetalle = true;
+    this.ruta.navigate(['detalle', mascota.id], {relativeTo: this.rutaActiva});
+  }
 }

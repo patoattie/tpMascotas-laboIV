@@ -24,4 +24,6 @@ nav a:hover {
 nav a.active {
   background-color: #4CAF50;
   color: white;
+  cursor: default;
+  pointer-events: none;
 }

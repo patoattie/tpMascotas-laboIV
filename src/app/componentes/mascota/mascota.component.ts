@@ -1,6 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Mascota } from '../../clases/mascota';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { MascotasService } from 'src/app/servicios/mascotas.service';
 
 @Component({
@@ -10,20 +10,24 @@ import { MascotasService } from 'src/app/servicios/mascotas.service';
 })
 export class MascotaComponent implements OnInit {
   mascota: Mascota;
-  @Output() ocultarMascotaEvent = new EventEmitter<void>();
 
   constructor(
     private ruta: ActivatedRoute,
+    private router: Router,
     private mascotas: MascotasService
-  ) { }
+  ) {
+    this.router.events.subscribe(evento => {
+      if (evento instanceof NavigationEnd) {
+        this.mascota = this.mascotas.getMascota(this.ruta.snapshot.paramMap.get('id'));
+      }
+    });
+  }
 
   ngOnInit(): void {
-    // console.log(this.ruta.routerState);
-    const idMascota = this.ruta.snapshot.paramMap.get('id');
-    this.mascota = this.mascotas.getMascota(idMascota);
+    this.mascota = this.mascotas.getMascota(this.ruta.snapshot.paramMap.get('id'));
   }
 
   ocultarDetalleMascota(): void {
-    this.ocultarMascotaEvent.emit();
+    this.router.navigate(['/listado']);
   }
 }
