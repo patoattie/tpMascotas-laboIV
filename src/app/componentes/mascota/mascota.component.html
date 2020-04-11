@@ -1,6 +1,7 @@
 <div class="container">
   <img src="{{ mascota.imagen }}" alt="Mascota" style="width:100%;">
-    <input type="button" (click)="ocultarDetalleMascota()" href="#" class="icon" title="Cerrar" value="X">
+  <!-- <input type="button" (click)="ocultarDetalleMascota()" href="#" class="icon" title="Cerrar" value="X"> -->
+  <a (click)="ocultarDetalleMascota()"><i class="fa fa-arrow-left"></i></a>
   <div class="content">
     <h3>Nombre: <span class="{{ mascota.tipo }}">{{ mascota.nombre }}</span></h3>
     <h3>Tipo: <span class="{{ mascota.tipo }}">{{ mascota.tipo.toUpperCase() }}</span></h3>

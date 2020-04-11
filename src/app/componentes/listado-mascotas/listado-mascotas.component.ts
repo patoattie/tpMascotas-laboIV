@@ -26,6 +26,6 @@ export class ListadoMascotasComponent implements OnInit {
 
   mostrarDetalleMascota(mascota: Mascota): void {
     this.mostrarDetalle = true;
-    this.ruta.navigate(['detalle', mascota.id], {relativeTo: this.rutaActiva, replaceUrl: true});
+    this.ruta.navigate(['detalle', mascota.id]/*, {relativeTo: this.rutaActiva, replaceUrl: true}*/);
   }
 }

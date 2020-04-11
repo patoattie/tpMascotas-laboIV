@@ -19,12 +19,10 @@ const routes: Routes = [
   {
     path: 'listado',
     component: ListadoMascotasComponent,
-    children: [
-      {
-        path: 'detalle/:id',
-        component: MascotaComponent
-      }
-    ]
+  },
+  {
+    path: 'detalle/:id',
+    component: MascotaComponent
   },
   {
     path: '',
